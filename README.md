@@ -134,3 +134,13 @@ Finally, a parameter can be defined as an "unnamed parameter". This means that t
 A few things to note:
 - There can only be one unnamed parameter in a parameter object
 - Only the last word in the input string will be assigned to the unnamed parameter
+
+## Compiling
+This was written using MonoDevelop 5.10 on Ubuntu 16.04. It will also compile under VisualStudio 2016, but will require the NUnit.Framework library to compile the unit tests.
+
+## TODO
+This is a *very* simple command parser implementation. As such, there are quite a few things that a real shell can do that this can't. Some of them could be implemented on the client side, but I'm working on adding the following:
+- Parameters cann't be combined.
+  - Many commands allow you to combine single-letter parameters. For example, instead of writing "tar -x -v -f" you can write "tar -xvf". This parser can't handle that currently, it must be handled by the client
+- Parameter values cannot be multiple words long
+  - Unlike a normal command shell, you can't just pass "command param 'some parameter value'" and get the value "some parameter value" for the "param" property. Instead, you will get "some". This cannot be handled by the client, it must be done by the Parser.
