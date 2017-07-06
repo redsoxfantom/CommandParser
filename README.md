@@ -144,3 +144,4 @@ This is a *very* simple command parser implementation. As such, there are quite 
   - Many commands allow you to combine single-letter parameters. For example, instead of writing "tar -x -v -f" you can write "tar -xvf". This parser can't handle that currently, it must be handled by the client
 - Parameter values cannot be multiple words long
   - Unlike a normal command shell, you can't just pass "command param 'some parameter value'" and get the value "some parameter value" for the "param" property. Instead, you will get "some". This cannot be handled by the client, it must be done by the Parser.
+- See any other differences you want implemented? Let me know by adding an issue, or send a pull request!
