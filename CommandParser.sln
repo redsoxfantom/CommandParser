@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandParser", "CommandParser\CommandParser.csproj", "{EB732DAD-7189-45A5-A4C4-07DD29E1D94D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandParserTest", "CommandParserTest\CommandParserTest.csproj", "{2AD34824-F123-44A2-BFBB-AFF4B701C93F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AD34824-F123-44A2-BFBB-AFF4B701C93F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD34824-F123-44A2-BFBB-AFF4B701C93F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD34824-F123-44A2-BFBB-AFF4B701C93F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD34824-F123-44A2-BFBB-AFF4B701C93F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB732DAD-7189-45A5-A4C4-07DD29E1D94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB732DAD-7189-45A5-A4C4-07DD29E1D94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB732DAD-7189-45A5-A4C4-07DD29E1D94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB732DAD-7189-45A5-A4C4-07DD29E1D94D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
