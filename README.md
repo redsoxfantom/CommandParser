@@ -33,6 +33,12 @@ I'll cover parameter parsing in more detail later, but for now lets have an
         public float FloatVal {get;set;}
     }
     
+    // Boolean parameters are a bit special. See the rest of the example for the explanation
+    public class BoolParam
+    {
+        public bool BoolParam {get;set;}
+    }
+    
     public class Program
     {
         public static void Main(String[] args)
@@ -56,6 +62,12 @@ I'll cover parameter parsing in more detail later, but for now lets have an
                          MultiParam mParam = (MultiParam)param;
                          Console.WriteLine("Command3 called with IntParam "+mParam.IntVal+" and FloatVal "+mParam.FloatVal);
                      }));
+            dict.Add(new Regex("[Cc]ommand34"), // Will match either "Command4" or "command4" 
+                     new Tuple<Type,Action<Object>>(typeof(BoolParam),(param)=>
+                     {
+                         BoolParam mParam = (BoolParam)param;
+                         Console.WriteLine(mParam.BoolParam);
+                     }));
             
             Parser parser = new Parser(dict); // Create an instance of the Parser, passing in the dictionary containing the command Dictionary we made earlier
             
@@ -68,6 +80,18 @@ I'll cover parameter parsing in more detail later, but for now lets have an
             
             parser.Parse("GarbledCommand"); // No action will be called and this will return "false".
             
-            parser.Parse("Command3 IntParam 10 FloatParam 15.4"); // Will return "true" and print "Command3 called with IntParam 10 and FloatParam 15.4"
+            parser.Parse("Command3 FloatParam 15.4 IntParam 10"); // Will return "true" and print "Command3 called with IntParam 10 and FloatParam 15.4"
+                                                                  // Note that this example shows that multiple parameters can be defined in any order.
+            
+            parser.Parse("command3 IntParam 15"); // Will return "true" and print "Command3 called with IntParam 15 and FloatParam 0"
+                                                  // Note this example shows that parameters can be left out of a command. 
+                                                  // If a parameter is not defined, the parameter object Property will take on it's default value
+                                                  // Defaults: Int = 0, Float = 0, Bool = false, String = null
+                                                  
+            parser.Parse("command4"); // Will return "true" and print "false"
+            parser.Parse("command4 BoolParam") // Will return "true" and print "true"
+                                               // Boolean parameters don't read in the string after the parameter name
+                                               // to decide what the value should be. If the parameter name is part of the string
+                                               // passed in, then the parameter value will be "true". If not, then "false"
         }
     }
