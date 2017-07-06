@@ -28,6 +28,11 @@ namespace CommandParser
 			return false;
 		}
 
+		public void AddCommand(Regex commandRegex, Tuple<Type,Action<object>> command)
+		{
+			commands.Add (commandRegex, command);
+		}
+
 		private void ProcessCommand(string commandString, Tuple<Type,Action<object>> paramActionTuple)
 		{
 			var paramsList = commandString.Split (' ');
