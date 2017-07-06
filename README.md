@@ -95,3 +95,38 @@ I'll cover parameter parsing in more detail later, but for now lets have an
                                                // passed in, then the parameter value will be "true". If not, then "false"
         }
     }
+    
+## Parameters
+As shown in the example above, parameter objects consist of Properties with public Getters and Setters. In order to determine what the value of a particular Property in the parameter object should be, the Parser looks for words in the string matching the name of the Property. For example:
+    public class ParamObj
+    {
+        public int Value {get;set;}
+    }
+    
+    parser.Parse("command Value 10"); // Value will get matched
+    parser.Parse("command value 10"); // Value will *not* get matched
+    
+It is also possible to use a Parameter attribute to define other "names" that a parameter can be matched to. For example:
+    public class ParamObj
+    {
+        [Parameter(false,"-v","val","Val")] // Don't worry about the "false" in the beginning, I'll cover that later
+        public int Value{get;set;}
+    }
+    
+    parser.Parse("command -v 10"); // Value will get matched
+    parser.Parse("command val 10"); // Value will get matched
+    parser.Parse("command Val 10"): // Value will get matched
+    parser.Parse("command Value 10"); // Value will get matched
+    
+Finally, a parameter can be defined as an "unnamed parameter". This means that the Parser will not try to look for a parameter name in the input string, it will simply take the last word in the string and assign that to the unnamed parameter. This is similiar to many common commands, such as "cat /path/to/file". For example:
+    public class ParamObj
+    {
+        [Parameter(true)]
+        public int Value{get;set;}
+    }
+    
+    parser.Parse("command 10"); // Value will get matched 
+    parser.Parse("command Value 10); // Value will still get matched
+A few things to note:
+- There can only be one unnamed parameter in a parameter object
+- Only the last word in the input string will be assigned to the unnamed parameter
